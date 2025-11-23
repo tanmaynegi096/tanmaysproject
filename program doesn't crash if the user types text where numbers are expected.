@@ -1,0 +1,10 @@
+def get_valid_float(prompt):
+    while True:
+        try:
+            value = float(input(prompt))
+            if value < 0:
+                print("Error: Value cannot be negative.")
+                continue
+            return value
+        except ValueError:
+            print("Invalid input. Please enter a number.")
