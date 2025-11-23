@@ -1,0 +1,24 @@
+import json
+import os
+
+DATA_FILE = 'data/grades.json'
+
+def load_data():
+    if not os.path.exists(DATA_FILE):
+        return []  # Return empty list if no file exists
+    try:
+        with open(DATA_FILE, 'r') as f:
+            return json.load(f)
+    except (json.JSONDecodeError, IOError):
+        return [] # Return empty if file is corrupted (Reliability)
+
+def save_course(course_obj):
+    data = load_data()
+    data.append(course_obj.to_dict())
+    
+    # Ensure directory exists
+    os.makedirs(os.path.dirname(DATA_FILE), exist_ok=True)
+    
+    with open(DATA_FILE, 'w') as f:
+        json.dump(data, f, indent=4)
+    print("Data saved successfully.")
