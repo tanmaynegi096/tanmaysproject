@@ -1,0 +1,12 @@
+class Course:
+    def __init__(self, name, credits, grade_point):
+        self.name = name
+        self.credits = float(credits)
+        self.grade_point = float(grade_point)
+
+    def to_dict(self):
+        return {
+            "name": self.name,
+            "credits": self.credits,
+            "grade_point": self.grade_point
+        }
