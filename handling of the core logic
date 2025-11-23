@@ -1,0 +1,11 @@
+def calculate_gpa(courses_data):
+    if not courses_data:
+        return 0.0
+    
+    total_credits = sum(c['credits'] for c in courses_data)
+    total_points = sum(c['credits'] * c['grade_point'] for c in courses_data)
+    
+    if total_credits == 0:
+        return 0.0
+        
+    return round(total_points / total_credits, 2)
