@@ -1,0 +1,33 @@
+from src import data_handler, calculator, models, input_validator
+
+def main():
+    print("=== Student Academic Performance Tracker ===")
+    
+    while True:
+        print("\n1. Add Course")
+        print("2. View GPA")
+        print("3. Exit")
+        
+        choice = input("Enter choice: ")
+        
+        if choice == '1':
+            name = input("Enter Course Name: ")
+            credits = input_validator.get_valid_float("Enter Credits: ")
+            grade = input_validator.get_valid_float("Enter Grade Point (e.g., 9.0): ")
+            
+            new_course = models.Course(name, credits, grade)
+            data_handler.save_course(new_course)
+            
+        elif choice == '2':
+            data = data_handler.load_data()
+            gpa = calculator.calculate_gpa(data)
+            print(f"\n--- Your Current GPA is: {gpa} ---")
+            
+        elif choice == '3':
+            print("Exiting...")
+            break
+        else:
+            print("Invalid choice.")
+
+if __name__ == "__main__":
+    main()
